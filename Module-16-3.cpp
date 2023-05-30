@@ -28,8 +28,9 @@ int main()
 	double number2;
 
 	//ввод математического выражения для вычисления
-	std::cout << "The calculator program." << std::endl << "Enter two real numbers and an operation sign between them : +, -, *, /: ";
-	std::cin >> mathExpression;
+	std::cout << "The calculator program." << std::endl << "Enter, separated by a space, two real numbers and the operation sign between them: +, -, *, /: ";
+	std::getline(std::cin, mathExpression);
+
 	//оборачиваем строку в поток
 	std::stringstream buffer_stream(mathExpression);
 	//смчитываем из потока переменные
