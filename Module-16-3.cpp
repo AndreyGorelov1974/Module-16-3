@@ -1,6 +1,6 @@
 ﻿/*Задание 3. Калькулятор
 Что нужно сделать
-Создайте небольшую программу для вычисления простых действий с числами. 
+Создайте небольшую программу для вычисления простых действий с числами.
 При запуске программа ожидает пользовательского ввода во временную переменную строку.
 После ввода строки она распарсивается на отдельные члены. Строка записывается в форме “<число-1><действие><число-2>” (без пробелов).
 Оба числа — это значения с плавающей точкой, повышенной точности (double). Действие может быть одним из: +, −, /, *.
@@ -14,29 +14,44 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
 
 int main()
 {
-	//целая часть числа
-	std::string integerPart = "";
-	//дробная часть числа
-	std::string fractionalPart = "";
+	//переменная для математического выражения
+	std::string mathExpression = "";
+	//переменная для математической операции
+	std::string mathOperation = "";
+	//переменные для чисел
+	double number1;
+	double number2;
 
+	//ввод математического выражения для вычисления
+	std::cout << "The calculator program." << std::endl << "Enter two real numbers and an operation sign between them : +, -, *, /: ";
+	std::cin >> mathExpression;
+	//оборачиваем строку в поток
+	std::stringstream buffer_stream(mathExpression);
+	//смчитываем из потока переменные
+	buffer_stream >> number1 >> mathOperation >> number2;
 
-	//ввод целой и дробной части в строковом виде
-	std::cout << "Enter the integer part of a number: ";
-	std::cin >> integerPart;
-	std::cout << "Enter the fractional part of a number: ";
-	std::cin >> fractionalPart;
-
-	//в строковом виде склеиваем обе части по очереди, вставляя точку
-	std::string numberStr = integerPart + ".";
-	numberStr += fractionalPart;
-
-	//конвертируем в число
-	double number = std::stod(numberStr);
-
-	//выводим число для проверки	
-	std::cout << "Full view of the number: " << number;
+	//в зависимости от операции выводим результат
+	if (mathOperation == "+") {
+		std::cout << "Result: " << number1 + number2;
+	}
+	else
+		if (mathOperation == "-") {
+			std::cout << "Result: " << number1 - number2;
+		}
+		else
+			if (mathOperation == "*") {
+				std::cout << "Result: " << number1 * number2;
+			}
+			else
+				if (mathOperation == "/") {
+					std::cout << "Result: " << number1 / number2;
+				}
+				else {
+					std::cout << "Incorrect operation!" << number1 / number2;
+				}
 }
