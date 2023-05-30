@@ -11,3 +11,32 @@
 Для этого создайте пустую строку std::string buffer и дайте пользователю возможность при помощи std::cin ввести в неё команду.
 Затем оберните полученную строку так: std::stringstream buffer_stream(buffer);
 Это позволит вам  получить каждый из трёх компонентов команды: buffer_stream >> a >> operation >> b;*/
+
+#include <iostream>
+#include <string>
+
+
+int main()
+{
+	//целая часть числа
+	std::string integerPart = "";
+	//дробная часть числа
+	std::string fractionalPart = "";
+
+
+	//ввод целой и дробной части в строковом виде
+	std::cout << "Enter the integer part of a number: ";
+	std::cin >> integerPart;
+	std::cout << "Enter the fractional part of a number: ";
+	std::cin >> fractionalPart;
+
+	//в строковом виде склеиваем обе части по очереди, вставляя точку
+	std::string numberStr = integerPart + ".";
+	numberStr += fractionalPart;
+
+	//конвертируем в число
+	double number = std::stod(numberStr);
+
+	//выводим число для проверки	
+	std::cout << "Full view of the number: " << number;
+}
